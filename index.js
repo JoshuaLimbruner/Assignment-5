@@ -21,11 +21,11 @@ async function getDogImage(name){
 function renderBreeds(breed){
     const ele=document.createElement("div")
     const pict=document.createElement("img")
-    pict.src=getDogImage(breed)
+    pict.src="'"+getDogImage(breed)+"'"
     ele.appendChild(pict)
     document.getElementById("wrapper").appendChild(ele)
 }
 
 breed8.forEach(breed=>{
     renderBreeds(breed)
-    })
+    }
