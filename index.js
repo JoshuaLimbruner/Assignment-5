@@ -16,16 +16,20 @@ async function getDogImage(name){
             console.log("It broke")
             return}
         console.log(data.message)
-        return data.message}
+        return data}
 
 function renderBreeds(breed){
+    const picture="https://dog.ceo/api/breed/beagle/images/random"
     const ele=document.createElement("div")
-    const pict=document.createElement("img")
-    pict.src='"'+getDogImage(breed)+'"'
-    ele.appendChild(pict)
+    ele.innerHTML=breed
+    const img=document.createElement("img")
+    img.src=picture//'"'+getDogImage(breed)+'"'
+    ele.appendChild(img)
     document.getElementById("wrapper").appendChild(ele)
 }
-
-breed8.forEach(breed=>{
-    renderBreeds(breed)
+grabAllBreeds().then(()=>{
+    breed8.forEach(breed=>{
+        console.log(breed)
+        renderBreeds(breed)
     })
+})
