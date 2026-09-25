@@ -10,26 +10,28 @@ async function grabAllBreeds(){
         return data.message}
 
 async function getDogImage(name){
-    const response=await fetch("https://dog.ceo/api/breed/"+name+"/images/random")
-        const data=await response.json()
+    const response=await fetch("https://dog.ceo/api/breed/"+name+"/images/random")  
+    const data=await response.json()
         if(data.status===404){
             console.log("It broke")
             return}
-        console.log(data.message)
-        return data}
+        return data.message}
 
-function renderBreeds(breed){
-    const picture="https://dog.ceo/api/breed/beagle/images/random"
+async function renderBreeds(breed){
     const ele=document.createElement("div")
+    ele.style.border="2px solid black"
+    ele.style.borderRadius="8px"
+    ele.style.marginTop="4px"
+    ele.style.padding="4px"
     ele.innerHTML=breed
     const img=document.createElement("img")
-    img.src=picture//'"'+getDogImage(breed)+'"'
+    img.src=await getDogImage(breed)
+    img.style.width="300px"
     ele.appendChild(img)
     document.getElementById("wrapper").appendChild(ele)
 }
 grabAllBreeds().then(()=>{
     breed8.forEach(breed=>{
-        console.log(breed)
         renderBreeds(breed)
     })
 })
